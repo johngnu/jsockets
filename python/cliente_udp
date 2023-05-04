@@ -1,0 +1,18 @@
+import sys
+from socket import *
+
+# direccion del servidor
+addr = ("127.0.0.1", 7777)
+
+# creando socket para cliente
+sockClient = socket(AF_INET, SOCK_DGRAM)
+
+# leyendo argumentos
+mensaje = sys.argv[1] + " " + sys.argv[2] 
+
+# enviando mensaje (mensaje , direccionPuerto)
+sockClient.sendto(mensaje.encode(), addr)
+
+# recibiendo mensaje (respuesta , direccion)
+resp, addr = sockClient.recvfrom(512)
+print(resp.decode())
